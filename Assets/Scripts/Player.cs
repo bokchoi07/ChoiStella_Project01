@@ -10,6 +10,7 @@ public class Player : MonoBehaviour
     [SerializeField] int ammo = 20;
     [SerializeField] float bulletForce = 15.0f;
 
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space) && ammo > 0)
