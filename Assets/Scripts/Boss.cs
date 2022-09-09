@@ -8,6 +8,7 @@ public class Boss : MonoBehaviour
     
     float lastShotTime;
     //bool isFiring = false;
+    Health bossHealth;
 
     public Transform player;
     public Transform bulletSpawn;
@@ -15,11 +16,10 @@ public class Boss : MonoBehaviour
 
     [SerializeField] float bulletForce = 25.0f;
     [SerializeField] float fireRate = 1.5f;
-
-
+    
     private void Start()
     {
-        //FireBullets();
+        bossHealth = gameObject.GetComponent<Health>();
     }
     private void Update()
     {
@@ -43,7 +43,6 @@ public class Boss : MonoBehaviour
         rb.AddForce(bulletSpawn.forward * bulletForce, ForceMode.Impulse);
 
         lastShotTime = Time.time;
-        Debug.Log("last time" + lastShotTime);
         fireCount++;
 
         if(fireCount == 3)

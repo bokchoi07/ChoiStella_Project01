@@ -128,5 +128,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletLifetime: 2
+  bulletDamage: 2
   damageSound: {fileID: 8300000, guid: 73b98561162f74a489b138a5893bc56d, type: 3}
   damageParticles: {fileID: 2787983320176812201, guid: ab48af3f9f0014d4381fa78fc2cc4f9c, type: 3}
+  killSound: {fileID: 8300000, guid: 839041510069de0488a46277b3c11b69, type: 3}
+  killParticles: {fileID: 7722607142735813612, guid: 98f7db6b65a5c9946949ca7b42f19c9d, type: 3}
