@@ -19,12 +19,10 @@ public class Boss : MonoBehaviour
 
     private void Start()
     {
-        FireBullets();
+        //FireBullets();
     }
     private void Update()
     {
-        transform.rotation = Quaternion.LookRotation(player.position - transform.position, transform.up);
-        
         if(Time.time - lastShotTime >= fireRate)
         {
             FireBullets();

@@ -10,6 +10,9 @@ public class Player : MonoBehaviour
     [SerializeField] int ammo = 20;
     [SerializeField] float bulletForce = 15.0f;
 
+    [Header("Effects")]
+    [SerializeField] GameObject shootingParticlesPrefab;
+    [SerializeField] AudioClip shootingSound;
 
     private void Update()
     {
@@ -26,5 +29,19 @@ public class Player : MonoBehaviour
         Rigidbody rb = bullet.GetComponent<Rigidbody>();
         rb.AddForce(bulletSpawn.forward * bulletForce, ForceMode.Impulse);
         ammo -= 1;
+        /*if (shootingParticlesPrefab != null)
+        {
+            shootingParticlesPrefab.Play();
+        }*/
+        if (shootingParticlesPrefab != null)
+        {
+            GameObject tempShootingParticles = Instantiate(shootingParticlesPrefab, bulletSpawn.position, Quaternion.identity);
+            Destroy(tempShootingParticles, 2f);
+        }
+
+        if (shootingSound != null)
+        {
+            AudioHelper.PlayClip2D(shootingSound, 1f);
+        }
     }
 }

@@ -127,4 +127,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c02db8c6c96337b45a6613eaecacb2fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletLifetime: 1.5
+  bulletLifetime: 2
+  damageSound: {fileID: 8300000, guid: 73b98561162f74a489b138a5893bc56d, type: 3}
+  damageParticles: {fileID: 2787983320176812201, guid: ab48af3f9f0014d4381fa78fc2cc4f9c, type: 3}
