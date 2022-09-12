@@ -32,4 +32,9 @@ public class Health : MonoBehaviour, IDamageable
     {
         return health;
     }
+
+    public int getMaxHealth()
+    {
+        return maxHealth;
+    }
 }

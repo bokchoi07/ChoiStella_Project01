@@ -5,9 +5,8 @@ using UnityEngine;
 public class Boss : MonoBehaviour
 {
     int fireCount = 0;
-    
     float lastShotTime;
-    //bool isFiring = false;
+
     Health bossHealth;
 
     public Transform player;
@@ -27,11 +26,6 @@ public class Boss : MonoBehaviour
         {
             FireBullets();
         }
-    }
-
-    public void Move()
-    {
-        // patrol points
     }
 
     public void FireBullets()
