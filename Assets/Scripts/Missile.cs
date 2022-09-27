@@ -2,30 +2,37 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet : MonoBehaviour
+public class Missile : MonoBehaviour
 {
-    [SerializeField] float bulletLifetime = 5.0f;
-    [SerializeField] int bulletDamage = 2;
+    [SerializeField] float moveSpeed = 1.0f;
+    [SerializeField] int missileDamage = 2;
 
     [Header("Effects")]
     [SerializeField] AudioClip damageSound;
     [SerializeField] GameObject damageParticles;
-    
+
     [SerializeField] AudioClip killSound;
     [SerializeField] GameObject killParticles;
-    
+
+    GameObject player;
+
     private void Start()
     {
-        StartCoroutine(DestoryBulletAfterTime(gameObject, bulletLifetime));
+        player = GameObject.FindGameObjectWithTag("Player");
+    }
+
+    private void Update()
+    {
+        transform.position = Vector3.MoveTowards(transform.position, player.transform.position, moveSpeed * Time.deltaTime);
+        transform.up = player.transform.position - transform.position;
     }
 
     private void OnTriggerEnter(Collider other)
-    { 
-        // if collider is damageable aka has health
+    {
         if (other.gameObject.GetComponent<IDamageable>() != null)
         {
             Health healthScript = other.gameObject.GetComponent<Health>();
-            healthScript.TakeDamage(bulletDamage);
+            healthScript.TakeDamage(missileDamage);
 
             // when object has no health, do kill effects not damage
             if (healthScript.GetHealth() <= 0)
@@ -76,12 +83,5 @@ public class Bullet : MonoBehaviour
             Destroy(other.gameObject);
             Destroy(gameObject);
         }
-    }
-
-    private IEnumerator DestoryBulletAfterTime(GameObject bullet, float lifetime)
-    {
-        yield return new WaitForSeconds(lifetime);
-
-        Destroy(bullet);
     }
 }

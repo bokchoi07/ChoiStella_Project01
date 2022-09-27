@@ -16,7 +16,7 @@ public class BossMovement : MonoBehaviour
 
     private void Update()
     {
-        if(healthCS.getHealth() <= healthCS.getMaxHealth() / 2 && isHalfHealth)
+        if(healthCS.GetHealth() <= healthCS.GetMaxHealth() / 2 && isHalfHealth)
         {
             moveSpeed += speedIncrease;
             isHalfHealth = false;

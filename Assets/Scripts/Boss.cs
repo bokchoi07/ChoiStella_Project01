@@ -12,9 +12,13 @@ public class Boss : MonoBehaviour
     public Transform player;
     public Transform bulletSpawn;
     public GameObject bulletPrefab;
+    public Transform missileSpawn;
+    public GameObject missilePrefab;
 
     [SerializeField] float bulletForce = 25.0f;
     [SerializeField] float fireRate = 1.5f;
+    [SerializeField] AudioClip bulletShootSFX;
+    [SerializeField] AudioClip missileShootSFX;
     
     private void Start()
     {
@@ -30,11 +34,11 @@ public class Boss : MonoBehaviour
 
     public void FireBullets()
     {
-        // shoot 3 consecutive bullets
-
         GameObject bullet = Instantiate(bulletPrefab, bulletSpawn.position, bulletSpawn.rotation);
         Rigidbody rb = bullet.GetComponent<Rigidbody>();
         rb.AddForce(bulletSpawn.forward * bulletForce, ForceMode.Impulse);
+
+        AudioHelper.PlayClip2D(bulletShootSFX, 1f);
 
         lastShotTime = Time.time;
         fireCount++;
@@ -49,8 +53,9 @@ public class Boss : MonoBehaviour
     public void FireMissile()
     {
         // shoot "missile" like projectile targeted at player
+        GameObject missile = Instantiate(missilePrefab, missileSpawn.position, missileSpawn.rotation);
+        AudioHelper.PlayClip2D(missileShootSFX, 1f);
 
-        
     }
 
     

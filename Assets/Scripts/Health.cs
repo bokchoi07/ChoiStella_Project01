@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
+using UnityEngine.Events;
 
 public interface IDamageable
 {
@@ -12,9 +14,12 @@ public class Health : MonoBehaviour, IDamageable
     [SerializeField] int health = 20;
     [SerializeField] int maxHealth = 20;
 
+    public event Action TookDamage = delegate { };
+
 
     public void TakeDamage(int damage)
     {
+        TookDamage?.Invoke();
         health -= damage;
         Debug.Log("health: " + health);
         if(health <= 0)
@@ -28,12 +33,12 @@ public class Health : MonoBehaviour, IDamageable
         Destroy(gameObject);
     }
 
-    public int getHealth()
+    public int GetHealth()
     {
         return health;
     }
 
-    public int getMaxHealth()
+    public int GetMaxHealth()
     {
         return maxHealth;
     }
