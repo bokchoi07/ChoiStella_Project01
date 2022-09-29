@@ -12,28 +12,28 @@ public class HealthBar : MonoBehaviour
 
     private void Start()
     {
-        slider.value = healthScript.GetMaxHealth();
+        slider.maxValue = healthScript.GetMaxHealth();
     }
 
     private void OnEnable()
     {
         healthScript.TookDamage += OnTakeDamage;
+        healthScript.Died += OnDie;
     }
 
     private void OnDisable()
     {
         healthScript.TookDamage -= OnTakeDamage;
+        healthScript.Died -= OnDie;
     }
 
     public void OnTakeDamage()
     {
-        if(healthScript.GetHealth() <= 0)
-        {
-            slider.value = 0;
-        }
-        else
-        {
-            slider.value = healthScript.GetHealth();
-        }
+        slider.value = healthScript.GetHealth();
+    }
+
+    public void OnDie()
+    {
+        slider.value = 0;
     }
 }

@@ -14,15 +14,23 @@ public class Health : MonoBehaviour, IDamageable
     [SerializeField] int health = 20;
     [SerializeField] int maxHealth = 20;
 
-    public event Action TookDamage = delegate { };
+    //public CameraShake cameraShake;
 
+    public event Action TookDamage = delegate { };
+    public event Action Died = delegate { };
 
     public void TakeDamage(int damage)
     {
         TookDamage?.Invoke();
         health -= damage;
         Debug.Log("health: " + health);
-        if(health <= 0)
+
+        /*if(gameObject.tag == "Player")
+        {
+            StartCoroutine(cameraShake.Shake(.15f, .4f));
+        }*/
+        
+        if (health <= 0)
         {
             Kill();
         }
@@ -30,6 +38,7 @@ public class Health : MonoBehaviour, IDamageable
 
     public void Kill()
     {
+        Died?.Invoke();
         Destroy(gameObject);
     }
 
