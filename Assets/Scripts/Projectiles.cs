@@ -2,51 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Missile : Projectiles
+public class Projectiles : MonoBehaviour
 {
-    [SerializeField] public float moveSpeed = 1.0f;
-
-    GameObject player;
-    private void Start()
-    {
-        player = GameObject.FindGameObjectWithTag("Player");
-    }
-
-    private void Update()
-    {
-        transform.position = Vector3.MoveTowards(transform.position, player.transform.position, moveSpeed * Time.deltaTime);
-        transform.up = player.transform.position - transform.position;
-    }
-
-    /*[SerializeField] float moveSpeed = 1.0f;
-    [SerializeField] int missileDamage = 2;
-
     [Header("Effects")]
-    [SerializeField] AudioClip damageSound;
-    [SerializeField] GameObject damageParticles;
+    [SerializeField] protected AudioClip damageSound;
+    [SerializeField] protected GameObject damageParticles;
 
-    [SerializeField] AudioClip killSound;
-    [SerializeField] GameObject killParticles;
+    [SerializeField] protected AudioClip killSound;
+    [SerializeField] protected GameObject killParticles;
 
-    GameObject player;
 
-    private void Start()
+    [SerializeField] protected int damage = 2;
+
+    protected void OnTriggerEnter(Collider other)
     {
-        player = GameObject.FindGameObjectWithTag("Player");
-    }
-
-    private void Update()
-    {
-        transform.position = Vector3.MoveTowards(transform.position, player.transform.position, moveSpeed * Time.deltaTime);
-        transform.up = player.transform.position - transform.position;
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
+        // if collider is damageable aka has health
         if (other.gameObject.GetComponent<IDamageable>() != null)
         {
             Health healthScript = other.gameObject.GetComponent<Health>();
-            healthScript.TakeDamage(missileDamage);
+            healthScript.TakeDamage(damage);
 
             // when object has no health, do kill effects not damage
             if (healthScript.GetHealth() <= 0)
@@ -60,7 +34,8 @@ public class Missile : Projectiles
                 {
                     AudioHelper.PlayClip2D(killSound, 1f);
                 }
-                Destroy(other.gameObject);
+                //Destroy(other.gameObject);
+                other.gameObject.SetActive(false);
                 Destroy(gameObject);
             }
             // damage effects for when there is still health left
@@ -97,5 +72,12 @@ public class Missile : Projectiles
             Destroy(other.gameObject);
             Destroy(gameObject);
         }
-    }*/
+    }
+
+    protected IEnumerator DestoryAfterTime(GameObject projectile, float lifetime)
+    {
+        yield return new WaitForSeconds(lifetime);
+
+        Destroy(projectile);
+    }
 }

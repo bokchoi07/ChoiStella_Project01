@@ -2,9 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet : MonoBehaviour
+public class Bullet : Projectiles
 {
-    [SerializeField] float bulletLifetime = 5.0f;
+    [SerializeField] public float lifetime = 5.0f;
+
+    private void Start()
+    {
+        StartCoroutine(DestoryAfterTime(gameObject, lifetime));
+    }
+
+    /*[SerializeField] float bulletLifetime = 5.0f;
     [SerializeField] int bulletDamage = 2;
 
     [Header("Effects")]
@@ -83,5 +90,5 @@ public class Bullet : MonoBehaviour
         yield return new WaitForSeconds(lifetime);
 
         Destroy(bullet);
-    }
+    }*/
 }

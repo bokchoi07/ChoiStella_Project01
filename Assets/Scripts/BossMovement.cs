@@ -13,7 +13,6 @@ public class BossMovement : MonoBehaviour
     [SerializeField] float speedIncrease = .5f;
     [SerializeField] Health healthCS;
 
-
     private void Update()
     {
         if(healthCS.GetHealth() <= healthCS.GetMaxHealth() / 2 && isHalfHealth)

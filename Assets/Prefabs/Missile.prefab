@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 2146672274574485460}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: -0.07, y: 3.366146, z: 12.7}
-  m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -111,9 +111,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 992bd6bd3661c0d40a247d3dad5b4df7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 10
-  missileDamage: 2
   damageSound: {fileID: 8300000, guid: 112c49cfd4f13f04aa7f33c0e2a96885, type: 3}
   damageParticles: {fileID: 2787983320176812201, guid: ab48af3f9f0014d4381fa78fc2cc4f9c, type: 3}
   killSound: {fileID: 8300000, guid: 7768a40b0afa74c4fbd89c02448af458, type: 3}
   killParticles: {fileID: 7722607142735813612, guid: 98f7db6b65a5c9946949ca7b42f19c9d, type: 3}
+  damage: 2
+  moveSpeed: 20

@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 1694848149411730}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -97,12 +97,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 992bd6bd3661c0d40a247d3dad5b4df7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
-  missileDamage: 2
   damageSound: {fileID: 8300000, guid: 73b98561162f74a489b138a5893bc56d, type: 3}
   damageParticles: {fileID: 2787983320176812201, guid: ab48af3f9f0014d4381fa78fc2cc4f9c, type: 3}
   killSound: {fileID: 8300000, guid: 839041510069de0488a46277b3c11b69, type: 3}
   killParticles: {fileID: 7722607142735813612, guid: 98f7db6b65a5c9946949ca7b42f19c9d, type: 3}
+  damage: 2
+  moveSpeed: 10
 --- !u!136 &-7057076370324854300
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -113,7 +113,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 1.4897519
-  m_Height: 10.307952
+  m_Radius: 1.7719773
+  m_Height: 10.655994
   m_Direction: 1
-  m_Center: {x: -0.00000023841858, y: 0.12965298, z: -0.025830269}
+  m_Center: {x: -0.005633036, y: 0.14152884, z: -0.025830267}

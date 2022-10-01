@@ -7,9 +7,9 @@ public class Boss : MonoBehaviour
     int fireCount = 0;
     float lastShotTime;
 
-    Health bossHealth;
+    //Health bossHealth;
 
-    public Transform player;
+    //public Transform player;
     public Transform bulletSpawn;
     public GameObject bulletPrefab;
     public Transform missileSpawn;
@@ -20,10 +20,6 @@ public class Boss : MonoBehaviour
     [SerializeField] AudioClip bulletShootSFX;
     [SerializeField] AudioClip missileShootSFX;
     
-    private void Start()
-    {
-        bossHealth = gameObject.GetComponent<Health>();
-    }
     private void Update()
     {
         if(Time.time - lastShotTime >= fireRate)
@@ -55,8 +51,5 @@ public class Boss : MonoBehaviour
         // shoot "missile" like projectile targeted at player
         GameObject missile = Instantiate(missilePrefab, missileSpawn.position, missileSpawn.rotation);
         AudioHelper.PlayClip2D(missileShootSFX, 1f);
-
     }
-
-    
 }

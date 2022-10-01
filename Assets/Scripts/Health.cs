@@ -21,8 +21,8 @@ public class Health : MonoBehaviour, IDamageable
 
     public void TakeDamage(int damage)
     {
-        TookDamage?.Invoke();
         health -= damage;
+        TookDamage?.Invoke();
         Debug.Log("health: " + health);
 
         /*if(gameObject.tag == "Player")
