@@ -19,7 +19,6 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && ammo > 0)
         {
             FireBullet();
-            //Debug.Log("ammo count: " + ammo);
         }
     }
 

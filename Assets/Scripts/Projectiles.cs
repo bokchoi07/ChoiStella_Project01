@@ -11,8 +11,7 @@ public class Projectiles : MonoBehaviour
     [SerializeField] protected AudioClip killSound;
     [SerializeField] protected GameObject killParticles;
 
-
-    [SerializeField] protected int damage = 2;
+    [SerializeField] protected int damage = 1;
 
     protected void OnTriggerEnter(Collider other)
     {
@@ -35,7 +34,7 @@ public class Projectiles : MonoBehaviour
                     AudioHelper.PlayClip2D(killSound, 1f);
                 }
                 //Destroy(other.gameObject);
-                other.gameObject.SetActive(false);
+                Destroy(other.gameObject);
                 Destroy(gameObject);
             }
             // damage effects for when there is still health left

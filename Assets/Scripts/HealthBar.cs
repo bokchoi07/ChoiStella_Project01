@@ -8,11 +8,14 @@ public class HealthBar : MonoBehaviour
 {
     [SerializeField] Health healthScript = null;
 
+    public Gradient gradient;
     public Slider slider;
+    public Image fill;
 
     private void Start()
     {
         slider.maxValue = healthScript.GetMaxHealth();
+        fill.color = gradient.Evaluate(1f);
     }
 
     private void OnEnable()
@@ -30,6 +33,8 @@ public class HealthBar : MonoBehaviour
     public void OnTakeDamage()
     {
         slider.value = healthScript.GetHealth();
+
+        fill.color = gradient.Evaluate(slider.normalizedValue);
     }
 
     public void OnDie()

@@ -4,10 +4,8 @@ using UnityEngine;
 
 public class Cannonball : Projectiles
 {
-    [SerializeField] public float lifetime = 5.0f;
-
     private void Start()
     {
-        StartCoroutine(DestoryAfterTime(gameObject, lifetime));
+        StartCoroutine(DestoryAfterTime(gameObject, 5.0f));
     }
 }
