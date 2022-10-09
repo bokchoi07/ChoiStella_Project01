@@ -14,8 +14,6 @@ public class Health : MonoBehaviour, IDamageable
     [SerializeField] int health = 20;
     [SerializeField] int maxHealth = 20;
 
-    //public CameraShake cameraShake;
-
     public event Action TookDamage = delegate { };
     public event Action Died = delegate { };
 

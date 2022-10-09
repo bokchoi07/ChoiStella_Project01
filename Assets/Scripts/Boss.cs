@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Boss : MonoBehaviour
 {
-    int fireCount = 0;
+    int fireCount = 1;
     float lastShotTime;
     MeshRenderer meshRenderer;
     Color originalColor;
@@ -35,7 +35,23 @@ public class Boss : MonoBehaviour
     {
         if(Time.time - lastShotTime >= fireRate)
         {
-            FireCannonball();
+            if (fireCount == 4)
+            {
+                FireMissile();
+                fireCount = 1;
+                Debug.Log("if");
+            } else
+            { 
+                FireCannonball();
+                if (fireCount == 3)
+                {
+                    FlashStart();
+                    AudioHelper.PlayClip2D(warningSFX, .1f);
+                }
+
+                fireCount++;
+                Debug.Log("else");
+            }
         }
     }
 
@@ -49,7 +65,7 @@ public class Boss : MonoBehaviour
         AudioHelper.PlayClip2D(bulletShootSFX, 1f);
 
         lastShotTime = Time.time;
-        fireCount++;
+        /*fireCount++;
 
         if(fireCount == 2)
         {
@@ -61,15 +77,16 @@ public class Boss : MonoBehaviour
         {
             FireMissile();
             fireCount = 0;
-        }
+        }*/
     }
 
     public void FireMissile()
     {
-        // shoot "missile" like projectile targeted at player
         GameObject missile = Instantiate(missilePrefab, missileSpawn.position, missileSpawn.rotation);
         GameObject tempMissileParticles = Instantiate(missileParticles, missileSpawn.position, missileSpawn.rotation);
         AudioHelper.PlayClip2D(missileShootSFX, 1f);
+
+        lastShotTime = Time.time;
     }
 
     void FlashStart()

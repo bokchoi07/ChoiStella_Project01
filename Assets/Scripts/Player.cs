@@ -1,24 +1,36 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class Player : MonoBehaviour
 {
     public Transform bulletSpawn;
     public GameObject bulletPrefab;
 
-    [SerializeField] int ammo = 20;
+    [SerializeField] public int ammo = 20;
+    [SerializeField] public int maxAmmo = 20;
     [SerializeField] float bulletForce = 15.0f;
 
     [Header("Effects")]
     [SerializeField] GameObject shootingParticlesPrefab;
     [SerializeField] AudioClip shootingSound;
+    [SerializeField] AudioClip reloadSFX;
+
+    public event Action<int> AmmoChange;
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space) && ammo > 0)
         {
             FireBullet();
+            AmmoChange?.Invoke(ammo);
+        }
+        if (Input.GetKeyDown(KeyCode.R) && ammo == 0)
+        {
+            ammo = maxAmmo;
+            AmmoChange?.Invoke(ammo);
+            AudioHelper.PlayClip2D(reloadSFX, 1.0f);
         }
     }
 

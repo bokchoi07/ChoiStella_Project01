@@ -1625,9 +1625,11 @@ MonoBehaviour:
   bulletSpawn: {fileID: 965673684}
   bulletPrefab: {fileID: 1935299641063113270, guid: 26ec79e37202a7242945683925f9bab0, type: 3}
   ammo: 20
+  maxAmmo: 20
   bulletForce: 35
   shootingParticlesPrefab: {fileID: 6449318638650460795, guid: 73ff1fcfd2079044ea80b04e7febdf68, type: 3}
   shootingSound: {fileID: 8300000, guid: 34d4222d789af984d96898a158ed5670, type: 3}
+  reloadSFX: {fileID: 8300000, guid: 7f69183a163b3aa488c5dd65d1135b2e, type: 3}
 --- !u!114 &1000119385
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2444,6 +2446,7 @@ GameObject:
   - component: {fileID: 1738895001}
   - component: {fileID: 1738895003}
   - component: {fileID: 1738895002}
+  - component: {fileID: 1738895004}
   m_Layer: 5
   m_Name: AmmoCount_txt
   m_TagString: Untagged
@@ -2568,6 +2571,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1738895000}
   m_CullTransparentMesh: 1
+--- !u!114 &1738895004
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1738895000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f3471fad7e975a49bf98b05a1b7e47a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ammoText: {fileID: 1738895002}
+  playerScript: {fileID: 1000119384}
 --- !u!1 &1744110450
 GameObject:
   m_ObjectHideFlags: 0
@@ -2701,7 +2718,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!64 &1835012356
 MeshCollider:
   m_ObjectHideFlags: 0
