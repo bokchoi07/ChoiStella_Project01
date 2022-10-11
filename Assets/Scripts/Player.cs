@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using TMPro;
 
 public class Player : MonoBehaviour
 {
@@ -16,6 +17,9 @@ public class Player : MonoBehaviour
     [SerializeField] GameObject shootingParticlesPrefab;
     [SerializeField] AudioClip shootingSound;
     [SerializeField] AudioClip reloadSFX;
+    [SerializeField] AudioClip noAmmoSFX;
+
+    [SerializeField] TMP_Text reloadText;
 
     public event Action<int> AmmoChange;
 
@@ -26,11 +30,19 @@ public class Player : MonoBehaviour
             FireBullet();
             AmmoChange?.Invoke(ammo);
         }
+
+        if(Input.GetKeyDown(KeyCode.Space) && ammo == 0)
+        {
+            AudioHelper.PlayClip2D(noAmmoSFX, 1f);
+            reloadText.gameObject.SetActive(true);
+        }
+
         if (Input.GetKeyDown(KeyCode.R) && ammo == 0)
         {
             ammo = maxAmmo;
             AmmoChange?.Invoke(ammo);
             AudioHelper.PlayClip2D(reloadSFX, 1.0f);
+            reloadText.gameObject.SetActive(false);
         }
     }
 

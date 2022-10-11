@@ -22,11 +22,6 @@ public class Health : MonoBehaviour, IDamageable
         health -= damage;
         TookDamage?.Invoke();
         Debug.Log("health: " + health);
-
-        /*if(gameObject.tag == "Player")
-        {
-            StartCoroutine(cameraShake.Shake(.15f, .4f));
-        }*/
         
         if (health <= 0)
         {

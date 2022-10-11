@@ -9,13 +9,14 @@ public class Boss : MonoBehaviour
     MeshRenderer meshRenderer;
     Color originalColor;
 
-    //Health bossHealth;
-
-    //public Transform player;
     public Transform cannonballSpawn;
     public GameObject cannonballPrefab;
     public Transform missileSpawn;
     public GameObject missilePrefab;
+
+    [SerializeField] GameObject player;
+    [SerializeField] GameObject boss;
+    public bool playerAlive;
 
     [SerializeField] float bulletForce = 25.0f;
     [SerializeField] float fireRate = 1.5f;
@@ -29,19 +30,31 @@ public class Boss : MonoBehaviour
     {
         meshRenderer = GetComponent<MeshRenderer>();
         originalColor = meshRenderer.material.color;
+        playerAlive = true;
     }
 
     private void Update()
     {
-        if(Time.time - lastShotTime >= fireRate)
+        if(player != null && player.GetComponent<Health>().GetHealth() <= 0)
+        {
+            playerAlive = false;
+        }
+
+        if(boss.GetComponent<Health>().GetHealth() <= 10)
+        {
+            fireRate = 1f;
+        }
+
+        if (Time.time - lastShotTime >= fireRate && playerAlive)
         {
             if (fireCount == 4)
             {
                 FireMissile();
                 fireCount = 1;
                 Debug.Log("if");
-            } else
-            { 
+            }
+            else
+            {
                 FireCannonball();
                 if (fireCount == 3)
                 {
@@ -65,19 +78,6 @@ public class Boss : MonoBehaviour
         AudioHelper.PlayClip2D(bulletShootSFX, 1f);
 
         lastShotTime = Time.time;
-        /*fireCount++;
-
-        if(fireCount == 2)
-        {
-            FlashStart();
-            AudioHelper.PlayClip2D(warningSFX, .1f);
-        }
-
-        if(fireCount == 3)
-        {
-            FireMissile();
-            fireCount = 0;
-        }*/
     }
 
     public void FireMissile()
