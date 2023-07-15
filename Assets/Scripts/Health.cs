@@ -20,13 +20,13 @@ public class Health : MonoBehaviour, IDamageable
     public void TakeDamage(int damage)
     {
         health -= damage;
-        TookDamage?.Invoke();
-        Debug.Log("health: " + health);
-        
         if (health <= 0)
         {
             Kill();
+            Time.timeScale = 0;
         }
+        else 
+            TookDamage?.Invoke();
     }
 
     public void Kill()

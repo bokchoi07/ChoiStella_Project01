@@ -10,6 +10,7 @@ public class WinLoseFX : MonoBehaviour
 
     [SerializeField] GameObject player;
     [SerializeField] GameObject boss;
+    [SerializeField] GameObject menuButton;
 
     [SerializeField] TMP_Text winLoseText;
 
@@ -35,6 +36,7 @@ public class WinLoseFX : MonoBehaviour
         AudioHelper.PlayClip2D(gameOverSFX, 1f);
         winLoseText.text = "you lose!";
         winLoseText.gameObject.SetActive(true);
+        menuButton.SetActive(true);
 
         boss.GetComponent<Boss>().playerAlive = false;
     }
@@ -44,5 +46,6 @@ public class WinLoseFX : MonoBehaviour
         AudioHelper.PlayClip2D(winSFX, 1f);
         winLoseText.text = "you win!";
         winLoseText.gameObject.SetActive(true);
+        menuButton.SetActive(true);
     }
 }

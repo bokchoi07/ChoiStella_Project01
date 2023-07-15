@@ -33,7 +33,6 @@ public class Projectiles : MonoBehaviour
                 {
                     AudioHelper.PlayClip2D(killSound, 1f);
                 }
-                //Destroy(other.gameObject);
                 Destroy(other.gameObject);
                 Destroy(gameObject);
             }
@@ -54,9 +53,6 @@ public class Projectiles : MonoBehaviour
         }
         else // if collider has no IDamageable/health.cs - instant kill/destroy ex. walls, bullets
         {
-            Debug.Log("not damageable");
-            //Color colliderColor = other.gameObject.GetComponent<Material>().color;
-
             if (killParticles != null)
             {
                 //ParticleSystem.MainModule ma = killParticles.GetComponent<ParticleSystem>().main;
